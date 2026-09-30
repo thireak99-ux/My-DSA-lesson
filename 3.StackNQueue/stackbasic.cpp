@@ -1,27 +1,56 @@
-#include<iostream>
-#include<vector>
-#include<stack>
+#include <iostream>
+#include <vector>
+#include <stack>
 
 using namespace std;
 
-int main(){
+void display(stack<int> st){
+
+    while(!st.empty()){
+
+        cout <<("\t")<< st.top() << " ";
+        st.pop();
+    }
+    cout << endl;
+
+}
+
+int peek(stack<int> st, int position)
+{
+
+    if (position <= 0 || position> st.size())
+    {
+        cout << "Invalid position. " << endl;
+
+        throw runtime_error("Peek at invalid position");
+    }
+
+    for (int i = 1; i < position; i++)
+    {
+        st.pop();
+    }
+    return st.top();
+}
+
+int main()
+{
 
     system("cls");
 
     stack<int> st;
 
-    // push() this here is where we want to add the value in it 
+    // push() this here is where we want to add the value in it
     st.push(10);
     st.push(20);
     st.push(30);
     st.push(40);
     st.push(50);
 
-    // pop() this is where we delete the last element 
+    // pop() this is where we delete the last element
     st.pop();
 
     cout << endl;
-    // the top() here is where we want to display the top and the top of the stack is the last element 
+    // the top() here is where we want to display the top and the top of the stack is the last element
 
     cout << "The top of stack value: " << st.top() << endl;
 
@@ -29,10 +58,14 @@ int main(){
     cout << "The size of the stack is equal : " << st.size() << endl;
 
     cout << endl;
-    cout << "Is the stack empty : " << (st.empty()? "Yes" : "No") << endl;
+    cout << "Is the stack empty : " << (st.empty() ? "Yes" : "No") << endl;
 
+    cout << "Peek (1) : " << peek(st, 1) << endl;
+    cout << "Peek (2) : " << peek(st, 2) << endl;
 
+    cout << endl;
 
-
-
+    cout << " \t    Display all element " << endl;
+    cout << endl;
+    display(st);
 }
